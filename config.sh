@@ -1,7 +1,7 @@
 #!/bin/bash
 
 REPO=${REPO:-./repo}
-sync_flags=""
+sync_flags="-c -j4"
 
 repo_sync() {
 	rm -rf .repo/manifest* &&
@@ -70,7 +70,7 @@ if [ -n "$2" ]; then
 	cd ..
 fi
 
-echo MAKE_FLAGS=-j$((CORE_COUNT + 2)) > .tmp-config
+echo MAKE_FLAGS=-j$((CORE_COUNT + 1)) > .tmp-config
 echo GECKO_OBJDIR=$PWD/objdir-gecko >> .tmp-config
 echo DEVICE_NAME=$1 >> .tmp-config
 
